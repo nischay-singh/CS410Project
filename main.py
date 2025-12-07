@@ -81,14 +81,11 @@ if __name__ == "__main__":
 
     data_dir = 'data'
     if not Path(data_dir).exists():
-        print(f"Warning: data directory '{data_dir}' not found. Skipping extraction.")
         df = None
     else:
-        print("Found directory")
         df = extractor.extract_from_directory(data_dir, language_mapping)
 
     if df is None or getattr(df, 'empty', True):
-        print("No features extracted. Ensure the data directory contains .conllu files.")
         sys.exit(0)
     df.to_csv('language_features_raw.csv', index=False)
 
