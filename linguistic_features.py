@@ -187,8 +187,7 @@ class AdvancedLinguisticFeatureExtractor:
             if len(sentence) < 3:
                 continue
             
-            pos_sequence = [token['upos'] for token in sentence 
-                          if token['upos'] and token['upos'] != '_']
+            pos_sequence = [token['upos'] for token in sentence if token['upos'] and token['upos'] != '_']
             
             if len(pos_sequence) < 3:
                 continue

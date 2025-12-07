@@ -50,6 +50,8 @@ class CoNLLUReader:
     def extract_text(self, sentences: List[List[Dict]]):
         text_parts = []
         for sentence in sentences:
-            words = [token['form'] for token in sentence]
+            words = []
+            for token in sentence:
+                words.append(token['form'])
             text_parts.append(' '.join(words))
         return ' '.join(text_parts)

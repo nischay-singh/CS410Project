@@ -42,7 +42,10 @@ class LanguageFeatureExtractor:
         
         df = pd.DataFrame(aligned_features)
         if 'language' in df.columns:
-            cols = ['language'] + [col for col in df.columns if col != 'language']
+            cols = ['language']
+            for col in df.columns:
+                if col != 'language':
+                    cols.append(col)
             df = df[cols]
         
         return df

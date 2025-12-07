@@ -234,8 +234,6 @@ class LanguageStructureAnalyzer:
     
     
     def run_complete_analysis(self, n_clusters=None):
-        print("Implementing the complete proposal pipeline...")
-        
         self.load_data()
         clustering_results, kmeans_labels, hierarchical_labels = self.perform_clustering(n_clusters=n_clusters)
         extra_clusters = self.perform_additional_clustering(n_clusters if n_clusters else len(set(kmeans_labels)))
@@ -244,7 +242,6 @@ class LanguageStructureAnalyzer:
         pca_features, umap_features = self.perform_dimensionality_reduction()
         self.visualize_language_similarity(pca_features, umap_features, clustering_results)
         
-        print("\n=== ANALYSIS COMPLETE ===")
         print(f"Final feature set ({len(self.feature_names)} features):")
         print(", ".join(self.feature_names))
         
@@ -265,8 +262,8 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         try:
             n_clusters = int(sys.argv[1])
-            print(f"Using manually specified k={n_clusters}")
+            print("Using manually specified k=", n_clusters)
         except ValueError:
-            print(f"Invalid cluster number: {sys.argv[1]}. Using automatic selection.")
+            print("Using automatic selection as invalid cluster number:", sys.argv[1])
     
     results = analyzer.run_complete_analysis(n_clusters=n_clusters)
