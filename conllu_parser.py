@@ -1,5 +1,6 @@
 from typing import Dict, List
 
+
 class CoNLLUReader:
     def read_conllu(self, file_path, max_tokens):
         sentences = []
