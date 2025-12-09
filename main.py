@@ -1,6 +1,24 @@
 import argparse
 import sys
+import subprocess
+import importlib
 from pathlib import Path
+
+def ensure_dependencies():
+    deps = [
+        ("pandas", "pandas"),
+        ("numpy", "numpy"),
+        ("scikit-learn", "sklearn"),
+        ("matplotlib", "matplotlib"),
+        ("umap-learn", "umap"),
+    ]
+    for pkg, module_name in deps:
+        try:
+            importlib.import_module(module_name)
+        except ImportError:
+            subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
+
+ensure_dependencies()
 
 import numpy as np
 import pandas as pd
